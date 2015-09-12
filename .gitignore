@@ -1,2 +1,2 @@
-fedora22.box package.box
+*.box
 Berksfile.lock
