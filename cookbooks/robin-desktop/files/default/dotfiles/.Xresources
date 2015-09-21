@@ -1,0 +1,47 @@
+
+! Fonts {{{
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.hintstyle: hintfull
+! Xft.dpi:       220
+! }}}
+
+!urxvt*borderLess: true
+urxvt*scrollBar:false
+
+urxvt*font:xft:Monospace:size=10
+urxvt*boldFont:xft:Monospace Bold:size=10
+
+urxvt*letterSpace:-1
+
+urxvt*transparent:true
+urxvt*shading:40
+
+urxvt*background:#222222
+urxvt*foreground:#e8e9ca
+
+! black
+URxvt*color0  : #2E3436
+URxvt*color8  : #555753
+! red
+URxvt*color1  : #CC0000
+URxvt*color9  : #e92824
+! green
+URxvt*color2  : #4E9A06
+URxvt*color10 : #91d931
+! yellow
+URxvt*color3  : #d0d1cd
+URxvt*color11 : #f5e84b
+! blue
+URxvt*color4  : #3465a4
+URxvt*color12 : #6990c0
+! magenta
+URxvt*color5  : #75507b
+URxvt*color13 : #a97fa7
+! cyan
+URxvt*color6  : #06989a
+URxvt*color14 : #3465a4
+! white
+URxvt*color7  : #d3d7cf
+URxvt*color15 : #ecfafd
