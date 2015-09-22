@@ -21,6 +21,12 @@ git '/home/robin/.oh-my-zsh' do
   action :sync
 end
 
+git '/home/robin/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting' do
+  repository 'git://github.com/zsh-users/zsh-syntax-highlighting.git'
+  revision 'master'
+  action :sync
+end
+
 git '/var/dotfiles' do
   repository 'https://github.com/rsr5/dotfiles'
   revision 'master'

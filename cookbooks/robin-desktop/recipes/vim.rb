@@ -6,7 +6,7 @@ plugins = {
   'python-mode' => 'https://github.com/klen/python-mode.git',
   'vim-sensible' => 'git://github.com/tpope/vim-sensible.git',
   'vim-airline' => 'https://github.com/bling/vim-airline.git',
-  'tmuxline' => 'https://github.com/edkolev/tmuxline.vim' 
+  'tmuxline' => 'https://github.com/edkolev/tmuxline.vim'
 }
 
 plugins.each do |plugin, url|
