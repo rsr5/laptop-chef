@@ -5,6 +5,9 @@ file '/etc/rpm/macros.image-language-conf' do
 EOH
 end
 
-#execute 'glibc-common' do
-#  command 'dnf reinstall -y glibc-common'
-#end
+bash 'set gb keyboard layout' do
+  code <<-EOH
+    localectl set-keymap gb;
+    localectl set-x11-keymap gb;
+  EOH
+end
