@@ -1,8 +1,12 @@
 
-package 'zsh'
-package 'git'
-package 'tmux'
-package 'vim'
+package 'shell \'n\' stuff' do
+  package_name %w(
+    zsh
+    git
+    tmux
+    vim
+  )
+end
 
 user 'robin' do
   uid 1000
