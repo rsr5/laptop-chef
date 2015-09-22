@@ -10,10 +10,22 @@ package 'windowing' do
     'lightdm',
     'xmonad',
     'xmobar',
-    'rxvt-unicode-256color'
+    'rxvt-unicode-256color-ml'
   ]
 end
 
 service 'lightdm' do
   action :start
+end
+
+file '/etc/X11/Xmodmap' do
+  content <<-MOD
+! Map Caps-Lock to be left control.
+
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L
+  MOD
 end
