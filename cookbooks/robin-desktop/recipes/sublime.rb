@@ -10,12 +10,5 @@ execute 'install sublime' do
   user 'root'
   cwd '/opt'
   command "tar -xvjf #{Chef::Config['file_cache_path']}/sublime.tar.bz2"
-end
-
-remote_directory '/home/robin/.config/sublime-text3' do
-  source 'sublime-text3'
-  owner 'robin'
-  group 'robin'
-  mode '0755'
-  action :create
+  not_if File.exist?('/opt/sublime-text-3')
 end

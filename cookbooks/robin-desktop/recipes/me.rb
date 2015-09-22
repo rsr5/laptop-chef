@@ -15,34 +15,19 @@ user 'robin' do
   shell '/usr/bin/zsh'
 end
 
-cookbook_file '/home/robin/.Xresources' do
-  source 'dotfiles/.Xresources'
-  owner 'robin'
-  group 'robin'
-  mode '0644'
-end
-
 git '/home/robin/.oh-my-zsh' do
   repository 'https://github.com/robbyrussell/oh-my-zsh.git'
   revision 'master'
   action :sync
 end
 
-cookbook_file '/home/robin/.zshrc' do
-  source 'dotfiles/.zshrc'
-  owner 'robin'
-  group 'robin'
-  mode '0644'
+git '/var/dotfiles' do
+  repository 'https://github.com/rsr5/dotfiles'
+  revision 'master'
+  action :sync
 end
 
-directory '/home/robin/.xmonad/' do
-  owner 'robin'
-  group 'robin'
-end
-
-cookbook_file '/home/robin/.xmonad/xmonad.hs' do
-  source 'dotfiles/xmonad.hs'
-  owner 'robin'
-  group 'robin'
-  mode '0644'
+execute 'sync dotfiles' do
+  user 'robin'
+  command 'rsync -rlptD --exclude \'.git\' /var/dotfiles/ /home/robin/'
 end

@@ -3,6 +3,7 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = 'robins/fedora22'
+  config.ssh.password = 'vagrant'
   config.vm.provider 'virtualbox' do |v|
     v.gui = true
     v.cpus = 2
