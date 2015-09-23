@@ -9,6 +9,10 @@ Vagrant.configure(2) do |config|
     v.cpus = 2
   end
 
+  config.vm.provision 'file',
+                      source: '/etc/my_secret_key',
+                      destination: '/var/tmp/passphrase'
+
   config.vm.provision 'chef_zero' do |chef|
     chef.cookbooks_path = 'cookbooks'
     chef.add_recipe 'robin-desktop'

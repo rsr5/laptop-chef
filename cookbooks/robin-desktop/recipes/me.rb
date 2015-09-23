@@ -5,6 +5,7 @@ package 'shell \'n\' stuff' do
     git
     tmux
     vim
+    gnupg
   )
 end
 
@@ -36,4 +37,23 @@ end
 execute 'sync dotfiles' do
   user 'robin'
   command 'rsync -rlptD --exclude \'.git\' /var/dotfiles/ /home/robin/'
+end
+
+execute 'fix perms' do
+  command 'chown -R robin:robin /home/robin/.gnupg'
+  action :nothing
+end
+
+bash 'sort out encryption' do
+  user 'robin'
+  cwd '/home/robin/'
+  environment 'HOME' => '/home/robin'
+  code <<-EOH
+    cat /var/tmp/passphrase | gpg --no-tty --passphrase-fd 0 -o gnupg.tar data
+    rm -rf .gnupg
+    tar -xvf gnupg.tar
+    rm gnupg.tar
+    EOH
+  not_if File.exist?('/home/robin/.gnupg')
+  notifies :run, 'execute[fix perms]', :immediately
 end
