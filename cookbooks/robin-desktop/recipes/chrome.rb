@@ -9,3 +9,7 @@ yum_repository 'google-chrome' do
 end
 
 package 'google-chrome-stable'
+
+link '/opt/sublime_text_3/sublime_text' do
+  to '/usr/bin/sublime_text'
+end

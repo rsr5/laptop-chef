@@ -10,7 +10,8 @@ package 'windowing' do
     'lightdm',
     'xmonad',
     'xmobar',
-    'rxvt-unicode-256color-ml'
+    'rxvt-unicode-256color-ml',
+    'slock'
   ]
 end
 
