@@ -29,7 +29,7 @@ git '/home/robin/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting' do
 end
 
 git '/var/dotfiles' do
-  repository 'https://github.com/rsr5/dotfiles'
+  repository 'https://github.com/rsr5/dotfiles.git'
   revision 'master'
   action :sync
 end
