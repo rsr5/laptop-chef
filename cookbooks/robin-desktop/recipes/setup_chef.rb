@@ -34,7 +34,7 @@ end
 berks_config = {
   'chef' => {
     'node_name' => 'repoadmin',
-    'client_key' => '~/.chef/berksapi.pem'
+    'client_key' => '~/.chef/autochef.pem'
   },
   'ssl' => {
     'verify' => false
