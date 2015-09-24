@@ -1,0 +1,6 @@
+{
+  "run_list": [
+    "recipe[robin-desktop::vagrant]",
+    "recipe[robin-desktop::default]"
+  ]
+}
