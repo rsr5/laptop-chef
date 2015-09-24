@@ -1,7 +1,7 @@
 
-include_recipe 'sudo::default'
+node.default['authorization']['sudo']['include_sudoers_d'] = true
 
-sudo 'robin'
+include_recipe 'sudo::default'
 
 package 'shell \'n\' stuff' do
   package_name %w(
@@ -18,6 +18,16 @@ user 'robin' do
   password '$6$5UDpp4lP$MHXcLanvZ44b9atZuHmd0rPmlMdJlMOjl1MbiZ1qydrw'\
            '6APpwCGss9wKjr546LonD43lmgKMxb7Fd7tQlRmWy/'
   shell '/usr/bin/zsh'
+end
+
+group 'docker' do
+  action :modify
+  members 'robin'
+  append true
+end
+
+sudo 'robin' do
+  user 'robin'
 end
 
 git '/home/robin/.oh-my-zsh' do

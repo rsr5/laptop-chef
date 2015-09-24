@@ -11,3 +11,22 @@ remote_file "#{Chef::Config['file_cache_path']}/chefdk.rpm" do
   action :create
   notifies :install, 'package[chefdk]', :immediately
 end
+
+ruby_block 'add_to_path' do
+  block do
+    ENV['OLD_GEM_HOME'] = ENV['GEM_HOME']
+    ENV['GEM_HOME'] = '/opt/chefdk/embedded/lib/ruby/gems/2.1.0'
+  end
+end
+
+gem_package 'kitchen-docker' do
+  gem_binary('/opt/chefdk/embedded/bin/gem')
+  options('--no-user-install')
+  action :upgrade
+end
+
+ruby_block 'remove_from_path' do
+  block do
+    ENV['GEM_HOME'] = ENV['OLD_GEM_HOME']
+  end
+end

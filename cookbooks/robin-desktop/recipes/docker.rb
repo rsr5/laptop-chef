@@ -1,8 +1,10 @@
 
-docker_service 'default' do
-  action [:create, :start]
+package 'docker'
+
+service 'docker' do
+  action [:enable, :start]
 end
 
-docker_image 'datasift/test-kitchen' do
-  action :pull
+group 'docker' do
+  action :create
 end

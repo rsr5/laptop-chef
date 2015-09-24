@@ -13,6 +13,6 @@ execute 'install sublime' do
   not_if File.exist?('/opt/sublime-text-3')
 end
 
-link '/opt/sublime_text_3/sublime_text' do
-  to '/usr/bin/sublime_text'
+link '/usr/bin/sublime_text' do
+  to '/opt/sublime_text_3/sublime_text'
 end

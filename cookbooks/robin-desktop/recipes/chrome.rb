@@ -10,6 +10,6 @@ end
 
 package 'google-chrome-stable'
 
-link '/opt/sublime_text_3/sublime_text' do
-  to '/usr/bin/sublime_text'
+link '/usr/bin/chrome' do
+  to '/opt/google/chrome/chrome'
 end

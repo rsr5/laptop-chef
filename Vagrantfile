@@ -7,6 +7,12 @@ Vagrant.configure(2) do |config|
   config.vm.provider 'virtualbox' do |v|
     v.gui = true
     v.cpus = 2
+    v.customize ['modifyvm',
+                 :id,
+                 '--audio',
+                 'pulse',
+                 '--audiocontroller',
+                 'hda'] # choices: hda sb16 ac97
   end
 
   config.vm.provision 'file',
