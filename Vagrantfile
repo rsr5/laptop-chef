@@ -15,6 +15,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision 'chef_zero' do |chef|
     chef.cookbooks_path = 'cookbooks'
-    chef.add_recipe 'robin-desktop'
+    chef.add_recipe 'robin-desktop::vagrant'
+    chef.add_recipe 'robin-desktop::default'
   end
 end
