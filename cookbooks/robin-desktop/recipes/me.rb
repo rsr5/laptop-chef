@@ -40,7 +40,8 @@ execute 'sync dotfiles' do
 end
 
 execute 'fix perms' do
-  command 'chown -R robin:robin /home/robin/.gnupg'
+  cwd '/home/robin'
+  command 'chown -R robin:robin .gnupg .ssh .chef'
   action :nothing
 end
 
@@ -54,6 +55,6 @@ bash 'sort out encryption' do
     tar -xvf gnupg.tar
     rm gnupg.tar
     EOH
-  not_if File.exist?('/home/robin/.gnupg')
+  not_if { File.exist?('/home/robin/.gnupg') }
   notifies :run, 'execute[fix perms]', :immediately
 end
