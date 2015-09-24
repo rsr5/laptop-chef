@@ -30,3 +30,24 @@ ruby_block 'remove_from_path' do
     ENV['GEM_HOME'] = ENV['OLD_GEM_HOME']
   end
 end
+
+berks_config = {
+  'chef' => {
+    'node_name' => 'repoadmin',
+    'client_key' => '~/.chef/berksapi.pem'
+  },
+  'ssl' => {
+    'verify' => false
+  }
+}
+
+directory '/home/robin/.berkshelf' do
+  owner 'robin'
+  group 'robin'
+end
+
+file '/home/robin/.berkshelf/config.json' do
+  content JSON.pretty_generate(berks_config)
+  owner 'robin'
+  group 'robin'
+end
