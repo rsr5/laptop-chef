@@ -10,7 +10,7 @@ execute 'install sublime' do
   user 'root'
   cwd '/opt'
   command "tar -xvjf #{Chef::Config['file_cache_path']}/sublime.tar.bz2"
-  not_if File.exist?('/opt/sublime-text-3')
+  not_if { File.exist?('/opt/sublime_text_3') }
 end
 
 link '/usr/bin/sublime_text' do
