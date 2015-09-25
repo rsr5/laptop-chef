@@ -9,5 +9,6 @@ bash 'set gb keyboard layout' do
   code <<-EOH
     localectl set-keymap gb;
     localectl set-x11-keymap gb;
+    timedatectl set-timezone Europe/London;
   EOH
 end

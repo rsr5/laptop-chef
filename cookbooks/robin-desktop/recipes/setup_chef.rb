@@ -25,6 +25,12 @@ gem_package 'kitchen-docker' do
   action :upgrade
 end
 
+gem_package 'knife-block' do
+  gem_binary('/opt/chefdk/embedded/bin/gem')
+  options('--no-user-install')
+  action :upgrade
+end
+
 ruby_block 'remove_from_path' do
   block do
     ENV['GEM_HOME'] = ENV['OLD_GEM_HOME']
@@ -50,4 +56,12 @@ file '/home/robin/.berkshelf/config.json' do
   content JSON.pretty_generate(berks_config)
   owner 'robin'
   group 'robin'
+end
+
+if File.exist?('/home/robin/.chef-generator')
+  git '/home/robin/.chef-generator' do
+    repository 'git@github.com:datasift/chef-code-generator.git'
+    revision 'master'
+    action :sync
+  end
 end

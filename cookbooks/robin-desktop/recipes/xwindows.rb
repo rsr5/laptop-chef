@@ -34,3 +34,32 @@ add Lock = Caps_Lock
 add Control = Control_L
   MOD
 end
+
+file '/usr/share/xsessions/xmonad-robin.desktop' do
+  content <<-MOD
+[Desktop Entry]
+Name=xmonad-keyring
+Comment=Tiling window manager
+Exec=/usr/bin/xmonad.start
+Terminal=false
+
+[Window Manager]
+SessionManaged=true
+
+# vi: encoding=utf-8
+  MOD
+end
+
+file '/usr/bin/xmonad.start' do
+  content <<-MOD
+#!/bin/bash
+
+eval $(gnome-keyring-daemon --start)
+export GNOME_KEYRING_SOCKET
+export GNOME_KEYRING_PID
+
+exec xmonad
+
+  MOD
+  mode '0755'
+end

@@ -52,3 +52,9 @@ execute 'sync dotfiles' do
   user 'robin'
   command 'rsync -rlptD --exclude \'.git\' /var/dotfiles/ /home/robin/'
 end
+
+remote_file '/usr/bin/gws' do
+  source 'https://raw.githubusercontent.com/StreakyCobra/gws/'\
+         '3618de83937c895ab38fba75d8cf85b237d343e2/src/gws'
+  mode '0755'
+end
