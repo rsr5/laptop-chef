@@ -15,8 +15,12 @@ package 'windowing' do
   ]
 end
 
+service 'gdm' do
+  action :disable
+end
+
 service 'lightdm' do
-  action :start
+  action [:start, :enable]
 end
 
 file '/etc/X11/Xmodmap' do
