@@ -1,4 +1,9 @@
 
+directory '/home/robin/code' do
+  owner 'robin'
+  group 'robin'
+end
+
 package 'chefdk' do
   source "#{Chef::Config['file_cache_path']}/chefdk.rpm"
   action :nothing
@@ -64,4 +69,31 @@ if File.exist?('/home/robin/.chef-generator')
     revision 'master'
     action :sync
   end
+end
+
+directory '/home/robin/code/cookbooks' do
+  owner 'robin'
+  group 'robin'
+end
+
+cookbook_file '/home/robin/code/cookbooks/list_repos.py' do
+  source 'list_repos.py'
+end
+
+cron 'sync cookbook repos' do
+  minute '0'
+  hour '10'
+  user 'robin'
+  mailto 'robin.ridler@gmail.com'
+  home '/home/robin'
+  command %w{
+    cd /home/robin/code/cookbooks &&
+    ./list_repos.py
+  }.join(' ')
+end
+
+remote_file '/usr/bin/gws' do
+  source 'https://raw.githubusercontent.com/StreakyCobra/gws/'\
+         '3618de83937c895ab38fba75d8cf85b237d343e2/src/gws'
+  mode '0755'
 end
