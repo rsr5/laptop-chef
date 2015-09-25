@@ -5,7 +5,7 @@ import sys
 
 URL = 'https://api.github.com/orgs/datasift/repos'
 CONTENT_URL = 'https://api.github.com/repos/datasift/{repo}/contents/{path}'
-HEADERS = {'Authorization': 'token 83fe4f5bdb42405025bb0e3566a257ee6e382d4e'}
+HEADERS = {'Authorization': ''}
 
 
 def do_request(page=1):
