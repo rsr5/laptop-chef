@@ -1,4 +1,4 @@
 source 'https://supermarket.chef.io'
 
-cookbook 'robin-desktop', path: 'cookbooks/robin-desktop'
-
+cookbook 'base', path: 'cookbooks/workstation'
+cookbook 'workstation', path: 'cookbooks/workstation'

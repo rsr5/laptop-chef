@@ -6,7 +6,8 @@ Vagrant.configure(2) do |config|
   config.ssh.password = 'vagrant'
   config.vm.provider 'virtualbox' do |v|
     v.gui = true
-    v.cpus = 2
+    v.cpus = 3
+    v.memory = 8192
     v.customize ['modifyvm',
                  :id,
                  '--audio',
@@ -21,7 +22,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision 'chef_zero' do |chef|
     chef.cookbooks_path = 'cookbooks'
-    chef.add_recipe 'robin-desktop::vagrant'
-    chef.add_recipe 'robin-desktop::default'
+    chef.add_recipe 'base::vagrant'
+    chef.add_recipe 'base::default'
+    chef.add_recipe 'workstation::default'
   end
 end
