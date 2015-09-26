@@ -1,4 +1,4 @@
-name 'robin-desktop'
+name 'workstation'
 maintainer 'Robin Ridler'
 maintainer_email 'robin.ridler@gmail.com'
 license 'all_rights'
