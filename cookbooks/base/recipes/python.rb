@@ -1,5 +1,7 @@
 
-package 'python-pip'
-python_pip "ipython"
-python_pip "requests"
-python_pip "click"
+
+python_runtime '2'
+
+python_package 'ipython'
+python_package 'requests'
+python_package 'click'
