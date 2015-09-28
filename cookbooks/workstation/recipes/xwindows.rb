@@ -58,6 +58,11 @@ eval $(gnome-keyring-daemon --start)
 export GNOME_KEYRING_SOCKET
 export GNOME_KEYRING_PID
 
+xrandr --output eDP1 --off
+xrandr --output HDMI1 --auto
+xrandr --output DP1 --auto
+xrandr --output DP1 --left-of HDMI1
+
 exec xmonad
 
   MOD

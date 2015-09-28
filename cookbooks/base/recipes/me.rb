@@ -14,7 +14,7 @@ package 'shell \'n\' stuff' do
 end
 
 user 'robin' do
-  uid 1000
+  uid 1001
   password '$6$5UDpp4lP$MHXcLanvZ44b9atZuHmd0rPmlMdJlMOjl1MbiZ1qydrw'\
            '6APpwCGss9wKjr546LonD43lmgKMxb7Fd7tQlRmWy/'
   shell '/usr/bin/zsh'
@@ -24,6 +24,12 @@ group 'docker' do
   action :modify
   members 'robin'
   append true
+end
+
+group 'audio' do
+  action :modify
+  members 'robin'
+ append true
 end
 
 sudo 'robin' do
@@ -37,8 +43,8 @@ bash 'configure git' do
   git config --global user.email "robin.ridler@gmail.com"
   git config --global user.name "Robin Ridler"
   GIT
-  only_if 'git config --global --get user.email | grep "robin.ridler@gmail.com" && '\
-          'git config --global --get user.name | grep "Robin Ridler"'
+  not_if 'git config --global --get user.email | grep "robin.ridler@gmail.com" && '\
+         'git config --global --get user.name | grep "Robin Ridler"'
 end
 
 git '/home/robin/.oh-my-zsh' do
