@@ -77,6 +77,9 @@ directory '/home/robin/code/cookbooks' do
 end
 
 cookbook_file '/home/robin/code/cookbooks/list_repos.py' do
+  mode '0755'
+  owner 'robin'
+  group 'robin'
   source 'list_repos.py'
 end
 
