@@ -30,6 +30,17 @@ sudo 'robin' do
   user 'robin'
 end
 
+bash 'configure git' do
+  user 'robin'
+  environment 'HOME' => '/home/robin'
+  code <<-GIT
+  git config --global user.email "robin.ridler@gmail.com"
+  git config --global user.name "Robin Ridler"
+  GIT
+  only_if 'git config --global --get user.email | grep "robin.ridler@gmail.com" && '\
+          'git config --global --get user.name | grep "Robin Ridler"'
+end
+
 git '/home/robin/.oh-my-zsh' do
   repository 'https://github.com/robbyrussell/oh-my-zsh.git'
   revision 'master'
