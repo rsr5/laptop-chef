@@ -1,3 +1,4 @@
 *.box
 Berksfile.lock
 berks-cookbooks
+nodes
