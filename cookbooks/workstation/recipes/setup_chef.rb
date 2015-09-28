@@ -91,7 +91,7 @@ cron 'sync cookbook repos' do
   home '/home/robin'
   command %w(
     cd /home/robin/code/cookbooks &&
-    ./list_repos.py
+    ./list_repos.py > /home/robin/code/cookbooks/.project.gws
   ).join(' ')
 end
 
