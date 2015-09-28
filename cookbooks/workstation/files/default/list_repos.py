@@ -3,6 +3,9 @@
 import requests
 import sys
 
+from os.path import expanduser
+
+
 URL = 'https://api.github.com/orgs/datasift/repos'
 CONTENT_URL = 'https://api.github.com/repos/datasift/{repo}/contents/{path}'
 HEADERS = {'Authorization': ''}
@@ -48,8 +51,16 @@ def does_repo_contain_chef(repo):
 
     return False
 
+try:
+    with open(expanduser('~') + '/.git-token', 'r') as f:
+        HEADERS['Authorization'] = 'token ' + f.read().rstrip()
+except IOError:
+    print "Please put your github token into ~/.git-token"
+    sys.exit(1)
+
 repos = "\n".join(sorted(["{0} | git@github.com:datasift/{0}.git".format(repo)
                           for repo in get_repos()
                           if does_repo_contain_chef(repo)]))
 
 print repos
+
