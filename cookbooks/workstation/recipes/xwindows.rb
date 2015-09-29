@@ -58,13 +58,39 @@ eval $(gnome-keyring-daemon --start)
 export GNOME_KEYRING_SOCKET
 export GNOME_KEYRING_PID
 
-xrandr --output eDP1 --off
-xrandr --output HDMI1 --auto
-xrandr --output DP1 --auto
-xrandr --output DP1 --left-of HDMI1
+xrandr | grep "^DP1 disconnected" > /dev/null;
+dp_connected=$?;
+
+xrandr | grep "^HDMI1 disconnected" > /dev/null;
+hdmi_connected=$?;
+
+if [[ "$dp_connected" == "1" && "$hdmi_connected" == "1" ]] ; then
+  xrandr --output eDP1 --off
+  xrandr --output HDMI1 --auto
+  xrandr --output DP1 --auto
+  xrandr --output DP1 --left-of HDMI1
+elif [[ "$dp_connected" == "0" && "$hdmi_connected" == "1" ]] ; then
+  xrandr --output eDP1 -s 1900x1200
+  xrandr --output HDMI1 --auto
+  xrandr --output DP1 --off
+  xrandr --output HDMI1 --left-of eDP1
+  xrandr --output HDMI1 --primary
+else
+  xrandr --output eDP1 --auto
+  xrandr --output HDMI1 --off
+  xrandr --output DP1 --off
+fi
 
 exec xmonad
 
+  MOD
+  mode '0755'
+end
+
+file '/usr/bin/xmonad.get.volume' do
+  content <<-MOD
+#!/usr/bin/zsh
+echo $(( $(amixer -D pulse sget Master | grep -P '\\d+%' -o | tr '%' ' ' | paste -sd+ - | bc) / 2 ))
   MOD
   mode '0755'
 end
