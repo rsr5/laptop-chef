@@ -16,6 +16,10 @@ package 'vagrant libvirt deps' do
   )
 end
 
+service 'libvirtd' do
+  action [:enable, :start]
+end
+
 vagrant_plugin 'vagrant-libvirt' do
   user 'robin'
 end
