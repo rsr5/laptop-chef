@@ -11,7 +11,8 @@ package 'windowing' do
     'xmonad',
     'xmobar',
     'rxvt-unicode-256color-ml',
-    'slock'
+    'slock',
+    'clusterssh'
   ]
 end
 
