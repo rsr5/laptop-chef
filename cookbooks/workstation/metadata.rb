@@ -7,3 +7,4 @@ long_description 'Installs/Configures desktop'
 version '0.1.0'
 
 depends 'yum'
+depends 'vagrant', '= 0.3.0'
