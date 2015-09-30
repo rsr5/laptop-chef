@@ -70,6 +70,7 @@ if [[ "$dp_connected" == "1" && "$hdmi_connected" == "1" ]] ; then
   xrandr --output HDMI1 --auto
   xrandr --output DP1 --auto
   xrandr --output DP1 --left-of HDMI1
+  xrandr --output DP1 --primary
 elif [[ "$dp_connected" == "0" && "$hdmi_connected" == "1" ]] ; then
   xrandr --output eDP1 -s 1900x1200
   xrandr --output HDMI1 --auto
