@@ -21,7 +21,7 @@ service 'gdm' do
 end
 
 service 'lightdm' do
-  action [:start, :enable]
+  action [:enable, :start]
 end
 
 file '/etc/X11/Xmodmap' do
@@ -65,6 +65,8 @@ dp_connected=$?;
 xrandr | grep "^HDMI1 disconnected" > /dev/null;
 hdmi_connected=$?;
 
+xrandr --output eDP1 --mode 1920x1080
+
 if [[ "$dp_connected" == "1" && "$hdmi_connected" == "1" ]] ; then
   xrandr --output eDP1 --off
   xrandr --output HDMI1 --auto
@@ -72,7 +74,6 @@ if [[ "$dp_connected" == "1" && "$hdmi_connected" == "1" ]] ; then
   xrandr --output DP1 --left-of HDMI1
   xrandr --output DP1 --primary
 elif [[ "$dp_connected" == "0" && "$hdmi_connected" == "1" ]] ; then
-  xrandr --output eDP1 -s 1900x1200
   xrandr --output HDMI1 --auto
   xrandr --output DP1 --off
   xrandr --output HDMI1 --left-of eDP1
