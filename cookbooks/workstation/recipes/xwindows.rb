@@ -12,7 +12,8 @@ package 'windowing' do
     'xmobar',
     'rxvt-unicode-256color-ml',
     'slock',
-    'clusterssh'
+    'clusterssh',
+    'xbacklight'
   ]
 end
 
@@ -97,3 +98,4 @@ echo $(( $(amixer -D pulse sget Master | grep -P '\\d+%' -o | tr '%' ' ' | paste
   MOD
   mode '0755'
 end
+
