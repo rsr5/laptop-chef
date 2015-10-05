@@ -2,20 +2,18 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = 'robins/fedora22'
+  config.vm.box = 'fedora23-beta-20150915'
   config.ssh.password = 'vagrant'
+  config.omnibus.chef_version = "12.4.1"
+
+  config.vm.provider 'libvirt' do |v|
+   v.machine_virtual_size = 50
+  end
 
   config.vm.define "workstation" do |workstation|
-    workstation.vm.provider 'virtualbox' do |v|
-      v.gui = true
+    workstation.vm.provider 'libvirt' do |v|
       v.cpus = 3
       v.memory = 8192
-      v.customize ['modifyvm',
-                   :id,
-                   '--audio',
-                   'pulse',
-                   '--audiocontroller',
-                   'hda'] # choices: hda sb16 ac97
     end
 
     workstation.vm.provision 'file',
@@ -31,8 +29,15 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "thehouse2" do |thehouse2|
-    workstation.vm.provision 'chef_zero' do |chef|
+
+    thehouse2.vm.provider 'libvirt' do |v|
+      v.cpus = 1
+      v.memory = 2048
+    end
+
+    thehouse2.vm.provision 'chef_zero' do |chef|
       chef.cookbooks_path = 'cookbooks'
+      chef.add_recipe 'base::hack_dnf'
       chef.add_recipe 'base::vagrant'
       chef.add_recipe 'base::default'
       chef.add_recipe 'openhab::default'

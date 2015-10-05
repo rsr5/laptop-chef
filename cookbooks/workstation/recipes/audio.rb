@@ -6,3 +6,8 @@ package 'bluetooth audio' do
   )
 end
 
+group 'audio' do
+  action :modify
+  members 'robin'
+ append true
+end

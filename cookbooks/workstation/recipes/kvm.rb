@@ -13,6 +13,8 @@ package 'vagrant libvirt deps' do
     libxml2-devel
     libvirt-devel
     libguestfs-tools-c
+    nfs-utils
+    system-config-nfs
   )
 end
 
@@ -20,6 +22,17 @@ service 'libvirtd' do
   action [:enable, :start]
 end
 
+service 'nfs-server' do
+  action [:enable, :start]
+end
+
 vagrant_plugin 'vagrant-libvirt' do
   user 'robin'
 end
+
+group 'kvm' do
+  action :modify
+  members 'robin'
+ append true
+end
+

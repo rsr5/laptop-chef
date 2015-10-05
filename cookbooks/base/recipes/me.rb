@@ -1,4 +1,6 @@
 
+require 'etc'
+
 node.default['authorization']['sudo']['include_sudoers_d'] = true
 
 include_recipe 'sudo::default'
@@ -13,8 +15,20 @@ package 'shell \'n\' stuff' do
   )
 end
 
+# Find the lowest free UID for Robin
+uid = 1000
+for x in 1..10 do
+  begin
+    passwd = ETC.gtpwuid(uid + x)
+    uid = uid + x
+    break
+  rescue
+    # do nothing
+  end
+end
+
 user 'robin' do
-  uid 1001
+  uid uid
   password '$6$5UDpp4lP$MHXcLanvZ44b9atZuHmd0rPmlMdJlMOjl1MbiZ1qydrw'\
            '6APpwCGss9wKjr546LonD43lmgKMxb7Fd7tQlRmWy/'
   shell '/usr/bin/zsh'
@@ -24,12 +38,6 @@ group 'docker' do
   action :modify
   members 'robin'
   append true
-end
-
-group 'audio' do
-  action :modify
-  members 'robin'
- append true
 end
 
 sudo 'robin' do

@@ -16,3 +16,9 @@ end
 link '/usr/bin/sublime_text' do
   to '/opt/sublime_text_3/sublime_text'
 end
+
+group 'libvirt' do
+  action :modify
+  members 'robin'
+ append true
+end
