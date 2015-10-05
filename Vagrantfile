@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
       chef.add_recipe 'base::hack_dnf'
       chef.add_recipe 'base::vagrant'
       chef.add_recipe 'base::default'
-      chef.add_recipe 'openhab::default'
+      chef.add_recipe 'thehouse2::default'
     end
   end
 end
