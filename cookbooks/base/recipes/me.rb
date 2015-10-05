@@ -15,16 +15,22 @@ package 'shell \'n\' stuff' do
   )
 end
 
-# Find the lowest free UID for Robin
-uid = 1000
-for x in 1..10 do
+# Find the lowest free UID for Robin, preferably 1000 will be chosen but in
+# vagrant boxes often add the vagrant user there.
+def used?(uid)
   begin
-    passwd = ETC.gtpwuid(uid + x)
-    uid = uid + x
-    break
+    ETC.gtpwuid(uid + x)
+    false
   rescue
-    # do nothing
+    true
   end
+end
+
+begin
+  passwd = Etc.getpwnam('robin')
+  uid = passwd.uid
+rescue
+  uid = (1000..1001).select { |uid| used?(uid) }.first
 end
 
 user 'robin' do
