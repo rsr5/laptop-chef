@@ -69,21 +69,33 @@ hdmi_connected=$?;
 xrandr --output eDP1 --mode 1920x1080
 
 if [[ "$dp_connected" == "1" && "$hdmi_connected" == "1" ]] ; then
+  # At work
   xrandr --output eDP1 --off
   xrandr --output HDMI1 --auto
   xrandr --output DP1 --auto
   xrandr --output DP1 --left-of HDMI1
   xrandr --output DP1 --primary
 elif [[ "$dp_connected" == "0" && "$hdmi_connected" == "1" ]] ; then
+  # In my office
+  pacmd set-default-sink "alsa_output.usb-Binary_Audio_UAC1_DAC-01-DAC.analog-stereo"
   xrandr --output HDMI1 --auto
   xrandr --output DP1 --off
   xrandr --output HDMI1 --left-of eDP1
   xrandr --output HDMI1 --primary
 else
+  # Just laptop
   xrandr --output eDP1 --auto
   xrandr --output HDMI1 --off
   xrandr --output DP1 --off
 fi
+
+chrome --restore-last-session &
+
+urxvt256c-ml -e tmux &
+urxvt256c-ml -e tmux &
+sublime_text &
+
+sleep 2;
 
 exec xmonad
 
