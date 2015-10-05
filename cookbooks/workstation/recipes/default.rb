@@ -1,5 +1,6 @@
 
 include_recipe 'workstation::xwindows'
+include_recipe 'workstation::audio'
 include_recipe 'workstation::fonts'
 include_recipe 'workstation::setup_chef'
 include_recipe 'workstation::sublime'
