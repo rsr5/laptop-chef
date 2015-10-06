@@ -20,13 +20,8 @@ include_recipe 'thehouse2::livingroom'
 include_recipe 'thehouse2::bedroom'
 include_recipe 'thehouse2::computer'
 include_recipe 'thehouse2::kitchen'
+include_recipe 'thehouse2::astro'
 
-openhab_item 'Sunset' do
-  filename 'astro'
-  type 'DateTime'
-  label 'Sunset [%1$tH:%1$tM]'
-  binding 'astro="type=SUNSET_TIME"'
-end
 
 openhab_item 'OvertonTemp' do
   filename 'sensors'
