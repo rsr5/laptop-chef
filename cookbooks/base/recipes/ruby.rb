@@ -1,7 +1,7 @@
 
 package 'ruby' do
   package_name %w(
-    'ruby'
-    'rubygems'
+    ruby
+    rubygems
   )
 end
