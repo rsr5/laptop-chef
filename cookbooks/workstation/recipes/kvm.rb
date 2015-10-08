@@ -36,3 +36,8 @@ group 'kvm' do
  append true
 end
 
+group 'libvirt' do
+  action :modify
+  members 'robin'
+ append true
+end
