@@ -4,12 +4,12 @@ package 'java-1.8.0-openjdk'
 
 user 'openhab'
 
-directory '/opt/openhab' do
-  owner 'openhab'
-end
-
-directory '/opt/openhab/addons_cache' do
-  owner 'openhab'
+%w(/opt/openhab
+   /opt/openhab/addons_cache
+   /opt/openhab/user_scripts).each do |dir|
+  directory dir do
+    owner 'openhab'
+  end
 end
 
 execute 'unpack openhab' do
@@ -41,7 +41,7 @@ end
 # Setup the accumulator.
 ruby_block 'item accumulator' do
   block do
-    node.run_state['openhab'] = {'items' => {}, 'groups' => Set.new}
+    node.run_state['openhab'] = { 'items' => {}, 'groups' => Set.new }
   end
 end
 
@@ -51,33 +51,23 @@ ruby_block 'item saver' do
       path = "/opt/openhab/configurations/items/#{filename}.items"
       item_file = ::File.open(path, 'w+')
       items.each do |item|
-
         binding = ''
-        if item.binding
-          binding = " { #{item.binding} }"
-        end
+        binding = " { #{item.binding} }" if item.binding
 
         icon = ' '
-        if item.icon
-          icon = " <#{item.icon}> "
-        end
+        icon = " <#{item.icon}> " if item.icon
 
-        group = ' '
-        if item.groups.size > 0
-          groups = ' (' + item.groups.join(' ') + ') '
-        end
+        groups = ' '
+        groups = ' (' + item.groups.join(' ') + ') ' if item.groups.size > 0
 
         label = ' '
-        if item.label
-          label = " \"#{item.label}\" "
-        end
+        label = " \"#{item.label}\" " if item.label
 
         itemstr = <<-ITEM
 /* Chef Added #{name} */
 #{item.type} #{item.name}#{label}#{icon}#{groups}#{binding}
 ITEM
         item_file.write(itemstr)
-
       end
       FileUtils.chown 'openhab', 'openhab', path
     end
