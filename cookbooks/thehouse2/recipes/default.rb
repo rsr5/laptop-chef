@@ -29,6 +29,7 @@ include_recipe 'thehouse2::computer'
 include_recipe 'thehouse2::lwrf'
 include_recipe 'thehouse2::kitchen'
 include_recipe 'thehouse2::astro'
+include_recipe 'thehouse2::study'
 
 openhab_item 'OvertonTemp' do
   filename 'sensors'
