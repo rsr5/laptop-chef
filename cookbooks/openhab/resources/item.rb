@@ -22,8 +22,3 @@ attribute :label, kind_of: String, default: nil
 attribute :binding, kind_of: String, default: nil
 attribute :icon, kind_of: String, default: nil
 attribute :groups, kind_of: Array, default: []
-
-def initialize(*args)
-  super
-  @run_context.include_recipe 'openhab::_install'
-end
