@@ -1,12 +1,10 @@
 
-cookbook_file '/opt/openhab/start_thehouse2.sh' do
-  owner 'openhab'
-  group 'openhab'
+cookbook_file '/usr/bin/start_thehouse2.sh' do
   mode '0755'
 end
 
 openhab_service 'default' do
-  startup_script '/opt/openhab/start_thehouse2.sh'
+  startup_script '/usr/bin/start_thehouse2.sh'
 end
 
 %w(binding.zwave
