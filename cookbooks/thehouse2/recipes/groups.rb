@@ -43,12 +43,6 @@ openhab_item 'Presence' do
   groups %w(All)
 end
 
-openhab_item 'Computers' do
-  type 'Group'
-  filename 'groups'
-  groups %w(All)
-end
-
 #TODO: This should be a Group:Switch
 openhab_item 'PresenceAnyone' do
   type 'Group'
