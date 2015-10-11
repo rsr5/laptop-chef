@@ -7,3 +7,5 @@ long_description 'Installs/Configures thehouse2'
 version '0.1.0'
 
 depends 'openhab'
+depends 'poise-python'
+depends 'firewall'

@@ -1,4 +1,5 @@
 
+include_recipe 'workstation::firewall'
 include_recipe 'workstation::xwindows'
 include_recipe 'workstation::audio'
 include_recipe 'workstation::fonts'
