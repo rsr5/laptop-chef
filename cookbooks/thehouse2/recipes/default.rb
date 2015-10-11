@@ -18,6 +18,7 @@ include_recipe 'thehouse2::groups'
 include_recipe 'thehouse2::livingroom'
 include_recipe 'thehouse2::bedroom'
 include_recipe 'thehouse2::computer'
+include_recipe 'thehouse2::lwrf'
 include_recipe 'thehouse2::kitchen'
 include_recipe 'thehouse2::astro'
 

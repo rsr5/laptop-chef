@@ -64,3 +64,48 @@ openhab_item 'KitchenBattery' do
   binding 'zwave="12:1:command=battery"'
   groups %w(Kitchen)
 end
+
+openhab_item 'KitchenTV' do
+  filename 'kitchen'
+  type 'Switch'
+  groups %w(Kitchen)
+  binding 'exec=">[ON:ssh pi@192.168.1.119 ./tv_on] '\
+                '>[OFF:ssh pi@192.168.1.119 ./tv_off] '\
+                '<[ssh pi@192.168.1.119 ./tv_state:5000:REGEX((.*?))]"'
+end
+
+openhab_item 'KitchenRGBW' do
+  filename 'kitchen'
+  type 'Group'
+  label 'Under Cupboard Lights'
+  icon 'colorwheel'
+  groups %w(Kitchen)
+end
+
+openhab_item 'KitchenRGBWAll' do
+  filename 'kitchen'
+  type 'Dimmer'
+  label 'RGBW Light Control [%d %%]'
+  icon 'switch'
+  binding 'zwave="24"'
+  groups %w(Kitchen KitchenRGBW)
+end
+
+openhab_item 'KitchenRGBWPicker' do
+  filename 'kitchen'
+  type 'Color'
+  label 'RGBW Light Color Picker'
+  icon 'slider'
+  groups %w(Kitchen KitchenRGBW)
+end
+
+[['Red', 2], ['Green', 3], ['Blue', 4], ['White', 5]].each do |color, zwave|
+  openhab_item "KitchenRGBW#{color}" do
+    filename 'kitchen'
+    type 'Dimmer'
+    label "RGBW Light #{color} [%d %%]"
+    icon 'switch'
+    binding "zwave=\"24:#{zwave}\""
+    groups %w(Kitchen KitchenRGBW)
+  end
+end
