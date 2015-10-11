@@ -1,20 +1,19 @@
 
-%w(
-  binding.zwave
-  persistence.mqtt
-  binding.mqtt
-  binding.mqttitude
-  binding.rfxcom
-  action.astro
-  action.pushover
-  binding.astro
-  binding.exec
-  binding.http
-  binding.networkhealth
-  ).each do |addon|
+%w(binding.zwave
+   persistence.mqtt
+   binding.mqtt
+   binding.mqttitude
+   binding.rfxcom
+   action.astro
+   action.pushover
+   binding.astro
+   binding.exec
+   binding.http
+   binding.networkhealth).each do |addon|
   openhab_addon addon
 end
 
+include_recipe 'thehouse2::firewall'
 include_recipe 'thehouse2::groups'
 include_recipe 'thehouse2::livingroom'
 include_recipe 'thehouse2::bedroom'
@@ -22,11 +21,10 @@ include_recipe 'thehouse2::computer'
 include_recipe 'thehouse2::kitchen'
 include_recipe 'thehouse2::astro'
 
-
 openhab_item 'OvertonTemp' do
   filename 'sensors'
   type 'Number'
-  label "Overton Temperature [%.1f °C]"
+  label 'Overton Temperature [%.1f °C]'
   binding 'exec="<[cat /opt/openhab/thehouse/current_temp:60000:REGEX((.*?))]"'
   groups %w(Sensors)
 end
@@ -34,7 +32,7 @@ end
 openhab_item 'PresenceRobin' do
   filename 'sensors'
   type 'Switch'
-  label "Robin Home?"
+  label 'Robin Home?'
   binding 'nh="android-38353765c4f6f7c6"'
   groups %w(Presence PresenceAnyone)
 end
@@ -42,12 +40,10 @@ end
 openhab_item 'PresenceSoph' do
   filename 'sensors'
   type 'Switch'
-  label "Soph Home?"
+  label 'Soph Home?'
   binding 'nh="android-9117158ebf3ed090"'
   groups %w(Presence PresenceAnyone)
 end
-
-
 
 <<-ITEMS
 
@@ -57,7 +53,7 @@ Group:Switch:OR(ON, OFF) UpstairsLights
 
 Group:Switch:OR(ON, OFF) PresenceAnyone "Anbody home?"
 
-# This is not used anymore?
+# These are not used anymore?
 Switch TV_AMP "TV/Amp" (LivingRoom, GroundFloorLights) { zwave="11" }
 Switch  Cupboard_lights   "Kitchen cupboard lights."   (Kitchen, GroundFloorLights, Lights) { zwave="6" }
 

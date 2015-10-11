@@ -5,10 +5,12 @@ package 'java-1.8.0-openjdk'
 user 'openhab'
 
 %w(/opt/openhab
+   /opt/openhab/logs
    /opt/openhab/addons_cache
    /opt/openhab/user_scripts).each do |dir|
   directory dir do
     owner 'openhab'
+    group 'openhab'
   end
 end
 
