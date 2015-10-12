@@ -12,6 +12,7 @@ package 'shell \'n\' stuff' do
     tmux
     vim
     gnupg
+    mercurial
   )
 end
 

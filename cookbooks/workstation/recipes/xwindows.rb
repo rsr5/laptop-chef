@@ -13,7 +13,8 @@ package 'windowing' do
     'rxvt-unicode-256color-ml',
     'slock',
     'clusterssh',
-    'xbacklight'
+    'xbacklight',
+    'feh'
   ]
 end
 
@@ -23,6 +24,11 @@ end
 
 service 'lightdm' do
   action [:enable, :start]
+end
+
+cookbook_file '/home/robin/.xmonad/aphex.jpg' do
+  owner 'robin'
+  group 'robin'
 end
 
 file '/etc/X11/Xmodmap' do
@@ -88,6 +94,8 @@ else
   xrandr --output HDMI1 --off
   xrandr --output DP1 --off
 fi
+
+feh --bg-scale /home/robin/.xmonad/aphex.jpg
 
 chrome --restore-last-session &
 
