@@ -7,7 +7,8 @@ plugins = {
   'vim-sensible' => 'git://github.com/tpope/vim-sensible.git',
   'vim-airline' => 'https://github.com/bling/vim-airline.git',
   'tmuxline' => 'https://github.com/edkolev/tmuxline.vim',
-  'vim-colors-solarized' => 'git://github.com/altercation/vim-colors-solarized.git'
+  'vim-colors-solarized' => 'git://github.com/altercation/vim-colors-solarized.git',
+  'syntastic' => 'https://github.com/scrooloose/syntastic.git'
 }
 
 plugins.each do |plugin, url|
