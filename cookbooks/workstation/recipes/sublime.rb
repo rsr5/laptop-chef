@@ -2,9 +2,7 @@
 package 'ShellCheck'
 
 python_package 'flake8'
-python_package 'codeintel' do
-  action :upgrade
-end
+python_package 'codeintel'
 
 remote_file "#{Chef::Config['file_cache_path']}/sublime.tar.bz2" do
   source 'http://c758482.r82.cf2.rackcdn.com/'\
