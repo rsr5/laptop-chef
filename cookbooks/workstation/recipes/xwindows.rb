@@ -97,14 +97,6 @@ fi
 
 feh --bg-scale /home/robin/.xmonad/aphex.jpg
 
-chrome --restore-last-session &
-
-urxvt256c-ml -e tmux &
-urxvt256c-ml -e tmux &
-sublime_text &
-
-sleep 2;
-
 exec xmonad
 
   MOD
