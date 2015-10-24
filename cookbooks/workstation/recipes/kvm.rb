@@ -15,6 +15,9 @@ package 'vagrant libvirt deps' do
     libguestfs-tools-c
     nfs-utils
     system-config-nfs
+    qemu-img
+    ruby-libvirt
+    ruby-devel
   )
 end
 

@@ -13,6 +13,7 @@ item_types = %w(
   Rollershutter
   String
   Switch
+  Group:Switch:OR(ON,OFF)
 )
 
 attribute :name, kind_of: String, name_attribute: true

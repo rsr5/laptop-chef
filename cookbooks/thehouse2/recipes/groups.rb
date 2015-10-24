@@ -37,12 +37,6 @@ openhab_item 'Sensors' do
   groups %w(All)
 end
 
-openhab_item 'Presence' do
-  type 'Group'
-  filename 'groups'
-  groups %w(All)
-end
-
 #TODO: This should be a Group:Switch
 openhab_item 'PresenceAnyone' do
   type 'Group'

@@ -6,6 +6,7 @@ user 'openhab'
 
 %w(/opt/openhab
    /opt/openhab/logs
+   /opt/openhab/tmp
    /opt/openhab/addons_cache
    /opt/openhab/user_scripts).each do |dir|
   directory dir do
