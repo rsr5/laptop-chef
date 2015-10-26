@@ -9,7 +9,8 @@ plugins = {
   'tmuxline' => 'https://github.com/edkolev/tmuxline.vim',
   'vim-colors-solarized' => 'git://github.com/altercation/vim-colors-solarized.git',
   'syntastic' => 'https://github.com/scrooloose/syntastic.git',
-  'ctrlp' => 'https://github.com/kien/ctrlp.vim.git'
+  'ctrlp' => 'https://github.com/kien/ctrlp.vim.git',
+  'gitgutter' => 'git://github.com/airblade/vim-gitgutter.git'
 }
 
 plugins.each do |plugin, url|
