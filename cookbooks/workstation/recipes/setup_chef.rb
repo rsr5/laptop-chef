@@ -11,16 +11,48 @@ ruby_block 'add_to_path' do
   end
 end
 
-gem_package 'kitchen-docker' do
-  gem_binary('/opt/chefdk/embedded/bin/gem')
-  options('--no-user-install')
-  action :upgrade
+%w(chef-provisioning-docker
+   knife-block
+   pry-byebug
+   pry-theme
+   pry-stack_explorer
+   awesome_print).each do |gem|
+  gem_package gem do
+    gem_binary('/opt/chefdk/embedded/bin/gem')
+    options('--no-user-install')
+    action :upgrade
+  end
 end
 
-gem_package 'knife-block' do
-  gem_binary('/opt/chefdk/embedded/bin/gem')
-  options('--no-user-install')
-  action :upgrade
+file '/home/robin/.pryrc' do
+  owner 'robin'
+  group 'robin'
+  mode 0644
+  content <<-CONT
+# ~/.pryrc
+Pry.config.theme = 'solarized'
+
+require 'awesome_print'
+AwesomePrint.pry!
+  CONT
+end
+
+directory '/home/robin/.pry' do
+  owner 'robin'
+  group 'robin'
+  mode 0755
+end
+
+directory '/home/robin/.pry/themes' do
+  owner 'robin'
+  group 'robin'
+  mode 0755
+end
+
+cookbook_file '/home/robin/.pry/themes/solarized.prytheme' do
+  owner 'robin'
+  group 'robin'
+  mode 0644
 end
 
 ruby_block 'remove_from_path' do
