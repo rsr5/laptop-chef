@@ -13,6 +13,8 @@ plugins = {
   'ctrlp' => 'https://github.com/kien/ctrlp.vim.git',
   'gitgutter' => 'git://github.com/airblade/vim-gitgutter.git',
   'minibufferexplorer' => 'https://github.com/fholgado/minibufexpl.vim.git',
+  'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
+  'nerdtree-git' => 'https://github.com/Xuyuanp/nerdtree-git-plugin.git',
   'surround' => 'https://github.com/tpope/vim-surround'
 }
 
