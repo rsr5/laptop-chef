@@ -29,7 +29,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define 'thehouse2' do |thehouse2|
-
     thehouse2.vm.provider 'libvirt' do |v|
       v.cpus = 1
       v.memory = 2048
