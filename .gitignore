@@ -3,3 +3,5 @@ Berksfile.lock
 berks-cookbooks
 nodes
 .ropeproject
+.kitchen
+.vagrant
