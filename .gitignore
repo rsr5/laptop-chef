@@ -5,3 +5,4 @@ nodes
 .ropeproject
 .kitchen
 .vagrant
+*.swp
