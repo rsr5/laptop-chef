@@ -22,7 +22,6 @@ Vagrant.configure(2) do |config|
         enable_vagrant: true
       }
       chef.add_recipe 'base::vagrant'
-      chef.add_recipe 'base::default'
       chef.add_recipe 'workstation::default'
     end
   end

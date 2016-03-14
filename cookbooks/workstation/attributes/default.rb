@@ -1,3 +1,3 @@
 
-default['vagrant']['version'] = '1.7.4'
-default['vagrant']['url'] = 'https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.rpm'
+default['vagrant']['version'] = '1.8.1'
+default['vagrant']['url'] = 'https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.rpm'
