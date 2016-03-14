@@ -1,5 +1,5 @@
 
-package 'systools' do
+multipackage 'systools' do
   package_name %w(
     htop
     strace

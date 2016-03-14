@@ -1,5 +1,5 @@
 
-package 'ruby' do
+multipackage 'ruby' do
   package_name %w(
     ruby
     rubygems

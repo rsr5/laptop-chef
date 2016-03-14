@@ -5,7 +5,7 @@ bash 'group install workstation' do
     EOH
 end
 
-package 'windowing' do
+multipackage 'windowing' do
   package_name [
     'lightdm',
     'xmonad',
@@ -110,4 +110,3 @@ echo $(( $(amixer -D pulse sget Master | grep -P '\\d+%' -o | tr '%' ' ' | paste
   MOD
   mode '0755'
 end
-

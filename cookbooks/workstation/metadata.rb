@@ -7,5 +7,5 @@ long_description 'Installs/Configures desktop'
 version '0.1.0'
 
 depends 'yum'
-depends 'vagrant', '= 0.3.0'
-depends 'firewall', '~> 2.0.5'
+depends 'vagrant'
+depends 'multipackage'

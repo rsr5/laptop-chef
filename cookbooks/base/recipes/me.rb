@@ -5,16 +5,12 @@ node.default['authorization']['sudo']['include_sudoers_d'] = true
 
 include_recipe 'sudo::default'
 
-package 'shell \'n\' stuff' do
-  package_name %w(
-    zsh
-    git
-    tmux
-    vim
-    gnupg
-    mercurial
-  )
-end
+multipackage %w(zsh
+                git
+                tmux
+                vim
+                gnupg
+                mercurial)
 
 # Find the lowest free UID for Robin, preferably 1000 will be chosen but in
 # vagrant boxes often add the vagrant user there.

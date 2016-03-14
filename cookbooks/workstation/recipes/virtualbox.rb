@@ -16,7 +16,7 @@ execute 'setup vbox driver' do
   action :nothing
 end
 
-package 'vbox dependencies' do
+multipackage 'vbox dependencies' do
   package_name %w(
     binutils
     gcc

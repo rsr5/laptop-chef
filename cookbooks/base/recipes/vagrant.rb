@@ -1,5 +1,7 @@
 
-package 'which'
+include_recipe 'base::hack_dnf'
+
+multipackage 'which'
 
 node.default['authorization']['sudo']['users'] = %w(vagrant)
 node.default['authorization']['sudo']['passwordless'] = true

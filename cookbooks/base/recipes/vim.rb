@@ -1,26 +1,31 @@
 
-package 'vim'
-package 'the_silver_searcher'
+multipackage %w(vim
+                the_silver_searcher
+                redhat-rpm-config
+                ShellCheck)
+
+python_package 'flake8'
 
 plugins = {
-  'vim-python-pep8-indent' => 'https://github.com/hynek/vim-python-pep8-indent.git',
-  'python-mode' => 'https://github.com/klen/python-mode.git',
-  'vim-sensible' => 'git://github.com/tpope/vim-sensible.git',
-  'vim-airline' => 'https://github.com/bling/vim-airline.git',
-  'tmuxline' => 'https://github.com/edkolev/tmuxline.vim',
-  'vim-colors-solarized' => 'git://github.com/altercation/vim-colors-solarized.git',
-  'syntastic' => 'https://github.com/scrooloose/syntastic.git',
-  'ctrlp' => 'https://github.com/kien/ctrlp.vim.git',
-  'gitgutter' => 'git://github.com/airblade/vim-gitgutter.git',
-  'minibufferexplorer' => 'https://github.com/fholgado/minibufexpl.vim.git',
-  'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
-  'nerdtree-git' => 'https://github.com/Xuyuanp/nerdtree-git-plugin.git',
-  'surround' => 'https://github.com/tpope/vim-surround'
+  'vim-python-pep8-indent' => 'hynek/vim-python-pep8-indent',
+  'python-mode' => 'klen/python-mode',
+  'vim-sensible' => 'tpope/vim-sensible',
+  'vim-airline' => 'bling/vim-airline',
+  'tmuxline' => 'edkolev/tmuxline.vim',
+  'vim-colors-solarized' => 'altercation/vim-colors-solarized',
+  'syntastic' => 'scrooloose/syntastic',
+  'ctrlp' => 'kien/ctrlp.vim',
+  'gitgutter' => 'airblade/vim-gitgutter',
+  'minibufferexplorer' => 'fholgado/minibufexpl.vim',
+  'nerdtree' => 'scrooloose/nerdtree',
+  'nerdtree-git' => 'Xuyuanp/nerdtree-git-plugin',
+  'surround' => 'tpope/vim-surround',
+  'YouCompleteMe' => 'Valloric/YouCompleteMe'
 }
 
 plugins.each do |plugin, url|
   git "/home/robin/.vim/bundle/#{plugin}" do
-    repository url
+    repository "https://github.com/#{url}.git"
     revision 'master'
     action :sync
   end
