@@ -14,7 +14,9 @@ Vagrant.configure(2) do |config|
     workstation.vm.provision 'file',
                              source: '/etc/my_secret_key',
                              destination: '/var/tmp/passphrase'
-
+    workstation.vm.provision 'file',
+                             source: '/home/robin/.ssh/id_rsa',
+                             destination: '/var/tmp/id_rsa'
     workstation.vm.provision 'shell', inline: 'sudo dnf -y install python yum'
 
     workstation.vm.provision 'chef_zero' do |chef|
@@ -24,6 +26,15 @@ Vagrant.configure(2) do |config|
       chef.add_recipe 'base::vagrant'
       chef.add_recipe 'workstation::default'
     end
+
+    workstation.vm.provision 'shell', inline: <<-SHELL
+    if [[ -f /var/tmp/id_rsa ]]
+    then
+      sudo mv /var/tmp/id_rsa /home/robin/.ssh/id_rsa
+      sudo chown robin /home/robin/.ssh/id_rsa
+      sudo chmod 600 /home/robin/.ssh/id_rsa
+    fi
+    SHELL
   end
 
   config.vm.define 'server' do |server|
