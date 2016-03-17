@@ -2,7 +2,8 @@
 multipackage %w(vim
                 the_silver_searcher
                 redhat-rpm-config
-                ShellCheck)
+                ShellCheck
+                git)
 
 python_package 'flake8'
 
@@ -19,15 +20,17 @@ plugins = {
   'minibufferexplorer' => 'fholgado/minibufexpl.vim',
   'nerdtree' => 'scrooloose/nerdtree',
   'nerdtree-git' => 'Xuyuanp/nerdtree-git-plugin',
-  'surround' => 'tpope/vim-surround',
-  'YouCompleteMe' => 'Valloric/YouCompleteMe'
+  'surround' => 'tpope/vim-surround'
 }
 
+plugins['YouCompleteMe'] = 'Valloric/YouCompleteMe' if node['os'] == 'linux'
+
 plugins.each do |plugin, url|
-  git "/home/robin/.vim/bundle/#{plugin}" do
+  git home('robin', ".vim/bundle/#{plugin}") do
     repository "https://github.com/#{url}.git"
     revision 'master'
     action :sync
+    user 'robin'
   end
 end
 
@@ -38,4 +41,22 @@ file '/usr/bin/chefrubocop' do
 #! /bin/sh
 exec chef exec rubocop "$@"
   CONT
+end
+
+if node['os'] == 'linux'
+  multipackage %w(
+    automake
+    gcc
+    gcc-c++
+    kernel-devel
+    cmake
+  )
+
+  bash 'install YouCompleteMe' do
+    cwd '/home/robin/.vim/bundle/YouCompleteMe/'
+    code <<-EOH
+      git submodule update --init --recursive
+      ./install.py --clang-compiler
+    EOH
+  end
 end
